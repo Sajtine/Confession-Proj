@@ -1,65 +1,69 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { ClipboardList } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+const HomePage = () => {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-950 px-4 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-24 left-10 w-40 h-40 bg-pink-500 blur-3xl rounded-full animate-pulse" />
+        <div className="absolute bottom-24 right-10 w-52 h-52 bg-purple-500 blur-3xl rounded-full animate-pulse" />
+      </div>
+
+      {/* Card Wrapper (gradient border effect) */}
+      <div className="relative group p-[1px] rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent">
+        {/* Glow on hover */}
+        <div className="absolute -inset-1 bg-white/10 blur-xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-2xl" />
+
+        {/* Card */}
+        <div className="relative flex flex-col items-center w-[360px] bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl px-8 py-9 text-center">
+          {/* Icon */}
+          <div className="bg-white/10 p-3 rounded-xl mb-4 border border-white/20">
+            <ClipboardList className="text-white w-6 h-6" />
+          </div>
+
+          {/* Title */}
+          <h1 className="text-white font-semibold text-3xl tracking-tight">
+            Survey
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          {/* Subtitle */}
+          <p className="text-gray-300 text-sm mt-3 leading-relaxed max-w-[260px]">
+            Help us improve by completing this quick survey.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          {/* Info cards */}
+          <div className="mt-6 w-full text-xs text-gray-400 space-y-2">
+            <div className="flex items-center justify-between bg-white/5 px-3 py-2 rounded-lg border border-white/10">
+              <span>Estimated time</span>
+              <span className="text-white">1–2 min</span>
+            </div>
+            <div className="flex items-center justify-between bg-white/5 px-3 py-2 rounded-lg border border-white/10">
+              <span>Responses</span>
+              <span className="text-white">Recorded</span>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-6" />
+
+          {/* Button */}
+          <button
+            className="w-full bg-white text-black py-2.5 rounded-lg font-medium 
+          hover:bg-gray-200 active:scale-95 transition-all duration-200
+          shadow-md hover:shadow-lg"
+            onClick={() => router.push("/survey")}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Start Survey
+          </button>
         </div>
-      </main>
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;
