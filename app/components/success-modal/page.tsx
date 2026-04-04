@@ -15,17 +15,10 @@ const SuccessModal = ({
   useEffect(() => {
     if (isOpen) {
       setShow(true);
-
-      // delay so transition triggers (IMPORTANT for fade-in)
-      setTimeout(() => {
-        setAnimate(true);
-      }, 30);
+      setTimeout(() => setAnimate(true), 30);
     } else {
       setAnimate(false);
-
-      setTimeout(() => {
-        setShow(false);
-      }, 300); // wait fade-out
+      setTimeout(() => setShow(false), 300);
     }
   }, [isOpen]);
 
@@ -34,34 +27,43 @@ const SuccessModal = ({
   return (
     <div
       className={`
-        fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50
-        transition-opacity duration-300 ease-out
+        fixed inset-0 z-50 flex items-center justify-center 
+        bg-black/70 backdrop-blur-sm px-4
+        transition-opacity duration-300
         ${animate ? "opacity-100" : "opacity-0"}
       `}
     >
-      {/* Modal box */}
+      {/* Modal Box - Responsive Width */}
       <div
         className={`
-          bg-white/10 backdrop-blur-2xl border border-white/20 text-center p-8 rounded-2xl shadow-2xl w-[320px]
+          w-full max-w-[340px] sm:max-w-[380px]
+          bg-white/10 backdrop-blur-2xl border border-white/20 
+          rounded-3xl shadow-2xl p-8 sm:p-10 text-center
           transform transition-all duration-300 ease-out
-          ${animate ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+          ${animate ? "opacity-100 scale-100" : "opacity-0 scale-95"}
         `}
       >
-        {/* Icon */}
-        <div className="text-5xl mb-3">🎉</div>
+        {/* Celebration Icon */}
+        <div className="text-6xl sm:text-7xl mb-4">🎉</div>
 
         {/* Title */}
-        <h2 className="text-white text-xl font-semibold">Success!</h2>
+        <h2 className="text-white text-2xl sm:text-3xl font-semibold tracking-tight">
+          Success!
+        </h2>
 
         {/* Message */}
-        <p className="text-gray-300 text-sm mt-2">
-          Your response has been submitted.
+        <p className="text-gray-300 text-base sm:text-lg mt-3 leading-relaxed">
+          Your response has been submitted.<br />
+          Thank you for your feedback!
         </p>
 
         {/* Button */}
         <button
           onClick={onClose}
-          className="mt-6 w-full bg-white text-black py-2 rounded-lg font-medium hover:bg-gray-200 active:scale-95 transition"
+          className="mt-8 w-full bg-white hover:bg-gray-100 active:bg-gray-200 
+                     text-black font-semibold py-3.5 rounded-2xl 
+                     shadow-lg active:scale-95 transition-all duration-200
+                     text-base sm:text-lg"
         >
           Close
         </button>
