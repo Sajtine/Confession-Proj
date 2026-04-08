@@ -46,7 +46,7 @@ export default function LoveLetter({ onClose }: { onClose: () => void }) {
               </p>
 
               <p>
-                {/* Your fifth paragraph goes here */}
+                I genuinely like you te, your vibes, attitude, kadaldalan pag nagchecheka us and yung tawa mo super nakakamelt huhu. That's it for my confession te. And lastly please be gentle to yourself te ha. Thank you for the closeness we have te!
               </p>
             </div>
 
